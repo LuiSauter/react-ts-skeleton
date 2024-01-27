@@ -1,11 +1,11 @@
 import { Route, Routes as BaseRoutes } from 'react-router-dom'
-import LoginPage from '../pages/auth/Login'
+import LoginPage from '../pages/login'
 import ProtectedRoute from './protectedRoute'
 import useAuth from '../hooks/useAuth'
-import RegisterPage from '../pages/auth/Register'
-import HomePage from '../pages/home/home'
+import RegisterPage from '../pages/register'
+import HomePage from '../pages/home'
 import LandingPage from '../pages/landing'
-import { HREF_HOME, HREF_LANDING, HREF_LOGIN, HREF_REGISTER } from '../utils/constants'
+import { PublicRoutes, PrivateRoutes } from '../utils/constants'
 
 const Routes = () => {
   const { isAuthenticated } = useAuth()
@@ -14,17 +14,18 @@ const Routes = () => {
       {/* RUTAS PÚBLICAS */}
       <Route index element={<LandingPage />} />
       {/* RUTAS PÚBLICAS, PERO SI YA ESTÁ AUTENTICADO OCULTAR DICHAS RUTAS */}
-      <Route element={<ProtectedRoute isAllowed={!isAuthenticated} redirectTo={HREF_HOME} />}>
-        <Route path={HREF_LOGIN} element={<LoginPage />} />
-        <Route path={HREF_REGISTER} element={<RegisterPage />} />
+      <Route element={<ProtectedRoute isAllowed={!isAuthenticated} redirectTo={PrivateRoutes.HOME} />}>
+        <Route path={PublicRoutes.LOGIN} element={<LoginPage />} />
+        <Route path={PublicRoutes.REGISTER} element={<RegisterPage />} />
       </Route>
       {/* RUTAS PRIVADAS */}
-      <Route element={<ProtectedRoute isAllowed={isAuthenticated} redirectTo={HREF_LANDING} />}>
-        <Route path={HREF_HOME} element={<HomePage />} />
-        <Route path={'/dashboard'} element={<h2>DashboardPage</h2>} />
-        <Route path={'/task'} element={<h2>TaskPage</h2>} />
-        <Route path={'/task/:id'} element={<h2>TaskPage id</h2>} />
+      <Route element={<ProtectedRoute isAllowed={isAuthenticated} redirectTo={PublicRoutes.LANDING} />}>
+        <Route path={PrivateRoutes.HOME} element={<HomePage />} />
+        <Route path={PrivateRoutes.DASHBOARD} element={<h2>DashboardPage</h2>} />
+        <Route path={PrivateRoutes.TASK} element={<h2>TaskPage</h2>} />
+        <Route path={PrivateRoutes.TASK_ID} element={<h2>TaskPage id</h2>} />
       </Route>
+      <Route path="*" element={<h2>Not found</h2>} />
     </BaseRoutes>
   )
 }
