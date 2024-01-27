@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useState } from 'react'
-import { type TAuthContext } from '../interfaces/AuthContext'
+import { type TAuthContext } from '../models/AuthContext'
 
 export const AuthContext = createContext<TAuthContext>({} as TAuthContext)
 

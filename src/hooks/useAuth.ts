@@ -1,6 +1,6 @@
 import { useContext } from 'react'
 import { AuthContext } from '../context/authContext'
-import { type TAuthContext } from '../interfaces/AuthContext'
+import { type TAuthContext } from '../models/AuthContext'
 
 const useAuth = (): TAuthContext => {
   const { isAuthenticated, setIsAuthenticated, loading, setLoading } = useContext(AuthContext)
