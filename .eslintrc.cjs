@@ -34,7 +34,8 @@ module.exports = {
         "react/react-in-jsx-scope": "off",
         "@typescript-eslint/strict-boolean-expressions": "off",
         "@typescript-eslint/consistent-type-assertions": "off",
-        "@typescript-eslint/triple-slash-reference": "off"
+        "@typescript-eslint/triple-slash-reference": "off",
+        "@typescript-eslint/no-non-null-assertion": "off"
     },
     "ignorePatterns": [".eslintrc.cjs", "vitest.config.ts", "vite.config.ts"],
     "settings": {
