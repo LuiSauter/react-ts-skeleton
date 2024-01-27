@@ -1,4 +1,12 @@
-export const HREF_LANDING = '/'
-export const HREF_LOGIN = '/login'
-export const HREF_REGISTER = '/register'
-export const HREF_HOME = '/app'
+export enum PublicRoutes {
+  LANDING = '/',
+  LOGIN = '/login',
+  REGISTER = '/register'
+}
+
+export enum PrivateRoutes {
+  HOME = '/app',
+  DASHBOARD = '/dashboard',
+  TASK = '/task',
+  TASK_ID = '/task/:id',
+}
