@@ -1,27 +1,43 @@
-import React, { createContext, useEffect, useState } from 'react'
-import { type TAuthContext } from '../models/AuthContext'
+import { createContext, useEffect, useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { STORAGE_TOKEN, authStatus, getStorage } from '../utils'
+import { type AuthContextState } from '../models'
+import { resetUser } from '@/redux/slices/user.slice'
+import { type ChildrenProps } from '@/models/common.model'
 
-export const AuthContext = createContext<TAuthContext>({} as TAuthContext)
+export const AuthContext = createContext<AuthContextState>({} as AuthContextState)
 
-interface Props {
-  children: React.ReactNode | JSX.Element | JSX.Element[]
-}
+export const AuthProvider = ({ children }: ChildrenProps) => {
+  const [status, setStatus] = useState<authStatus>(authStatus.loading)
+  const [error, setError] = useState<string[]>([])
 
-export const AuthProvider = ({ children }: Props) => {
-  const [isAuthenticated, setIsAuthenticated] = useState(true)
-  const [loading, setLoading] = useState(false)
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    if (error.length > 0) {
+      const timer = setTimeout(() => {
+        setError([])
+      }, 5000)
+      return () => { clearTimeout(timer) }
+    }
+  }, [error])
 
   useEffect(() => {
     const checkAuthStatus = () => {
-      const token = localStorage.getItem('token')
-      setIsAuthenticated(!!token)
+      const accessToken = getStorage(STORAGE_TOKEN)
+      if (!accessToken) {
+        setStatus(authStatus.authenticated)
+        dispatch(resetUser())
+        return
+      }
+      setStatus(authStatus.authenticated)
     }
     checkAuthStatus()
     return () => { }
   }, [])
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, setIsAuthenticated, loading, setLoading }}>
+    <AuthContext.Provider value={{ status, error }}>
       {children}
     </AuthContext.Provider>
   )
