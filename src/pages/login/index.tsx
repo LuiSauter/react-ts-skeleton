@@ -1,6 +1,4 @@
-import React from 'react'
-
-const LoginPage = (): React.ReactNode => {
+const LoginPage = (): JSX.Element => {
   return (
     <div>LoginPage</div>
   )

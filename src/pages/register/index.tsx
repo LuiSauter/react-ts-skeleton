@@ -1,6 +1,4 @@
-import React from 'react'
-
-const RegisterPage = (): React.ReactNode => {
+const RegisterPage = (): JSX.Element => {
   return (
     <div>RegisterPage</div>
   )
