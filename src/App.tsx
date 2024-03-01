@@ -1,22 +1,32 @@
-import { Link } from 'react-router-dom'
+import { Suspense } from 'react'
+import { BrowserRouter } from 'react-router-dom'
+import { Provider } from 'react-redux'
+import { SWRConfig } from 'swr'
+import { ThemeProvider } from './context/themeContext'
+import { AuthProvider } from './context/authContext'
+import Loading from './components/shared/loading'
+import { store } from './redux/store'
 import Routes from './routes'
-import { PrivateRoutes, PublicRoutes } from './utils/constants'
 
 function App() {
   return (
-    <>
-      <header>
-        React Template
-        <br />
-        <Link to={PublicRoutes.LOGIN}>Login</Link>
-        <Link to={PublicRoutes.REGISTER}>Register</Link>
-        <Link to={PublicRoutes.LANDING}>Inicio</Link>
-        <Link to={PrivateRoutes.HOME}>App</Link>
-      </header>
-      <main>
-        <Routes />
-      </main>
-    </>
+    <Provider store={store}>
+      <AuthProvider>
+        <ThemeProvider>
+          <SWRConfig value={{ revalidateOnFocus: false }}>
+            <Suspense fallback={
+              <div className='grid place-content-center place-items-center min-h-screen text-action'>
+                <Loading />
+              </div>
+            }>
+              <BrowserRouter>
+                <Routes />
+              </BrowserRouter>
+            </Suspense>
+          </SWRConfig>
+        </ThemeProvider>
+      </AuthProvider>
+    </Provider>
   )
 }
 

@@ -35,7 +35,8 @@ module.exports = {
         "@typescript-eslint/strict-boolean-expressions": "off",
         "@typescript-eslint/consistent-type-assertions": "off",
         "@typescript-eslint/triple-slash-reference": "off",
-        "@typescript-eslint/no-non-null-assertion": "off"
+        "@typescript-eslint/no-non-null-assertion": "off",
+        "@typescript-eslint/promise-function-async": "off",
     },
     "ignorePatterns": [".eslintrc.cjs", "vitest.config.ts", "vite.config.ts"],
     "settings": {
