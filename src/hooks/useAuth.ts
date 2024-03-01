@@ -1,10 +1,10 @@
 import { useContext } from 'react'
 import { AuthContext } from '../context/authContext'
-import { type TAuthContext } from '../models/AuthContext'
+import { type AuthContextState } from '../models'
 
-const useAuth = (): TAuthContext => {
-  const { isAuthenticated, setIsAuthenticated, loading, setLoading } = useContext(AuthContext)
-  return { isAuthenticated, setIsAuthenticated, loading, setLoading }
+const useAuth = (): AuthContextState => {
+  const context = useContext(AuthContext)
+  return context
 }
 
-export default useAuth
+export { useAuth }
