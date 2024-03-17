@@ -2,29 +2,51 @@
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
+## Installation
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Clone the repository.
 
-## Expanding the ESLint configuration
+Install dependencies using npm/yarn/pnpm install.
+```bash
+git clone [repository url]
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+npm install
 
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+npm run dev
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Configure the environment variables.
+Create `.env` file
+```bash
+VITE_API_URL="http://localhost:3000"
+```
+
+## Usage
+Provide examples if necessary.
+## Contributing
+Fork the repository or download repository.
+
+### Create a new branch
+Gitflow
+```bash
+git checkout -b feature/new-feature
+```
+
+### Make changes and commit them
+Conventional commits
+```bash
+git commit -m "feat(product): Add new feature"
+```
+
+### Run TESTS
+```bash
+npm run test
+```
+If all tests were successful
+
+### Push to the branch
+```bash
+git push origin feature/new-feature
+```
+
+Create a new Pull Request.
